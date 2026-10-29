@@ -1,1 +1,83 @@
-<!DOCTYPE html><html><head><title>Assignment Tracker</title></head><body><h1>Assignment Tracker</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Assignment Tracker BD</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1 id="appTitle">Assignment Tracker BD</h1>
+    <p id="tagline" class="muted">Coursework deadlines, under control</p>
+  </div>
+  <button id="langBtn" type="button">বাংলা</button>
+</header>
+
+<nav class="tabs" aria-label="Sections">
+  <button class="tab-btn active" data-tab="dashboard" id="tabDashboard" type="button">Dashboard</button>
+  <button class="tab-btn" data-tab="assignments" id="tabAssignments" type="button">Assignments</button>
+  <button class="tab-btn" data-tab="data" id="tabData" type="button">Data</button>
+</nav>
+
+<main>
+  <section class="tab-panel" data-panel="dashboard">
+    <div id="statCards" class="stats"></div>
+    <div class="rate">
+      <p id="rateText"></p>
+      <div class="bar"><div id="rateBar" class="bar-fill"></div></div>
+    </div>
+    <h2 id="bySubjectTitle">By subject</h2>
+    <div id="bySubject"></div>
+  </section>
+
+  <section class="tab-panel" data-panel="assignments" hidden>
+    <form id="assignForm" novalidate>
+      <h2 id="formTitle">Add assignment</h2>
+      <p id="formError" class="error" hidden></p>
+      <label><span id="lblTitle">Title</span><input id="title" type="text" maxlength="120" required></label>
+      <label><span id="lblSubject">Subject</span><input id="subject" type="text" maxlength="60" required></label>
+      <label><span id="lblDue">Due date</span><input id="due" type="date" required></label>
+      <label><span id="lblPriority">Priority</span>
+        <select id="priority"><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
+      <label><span id="lblStatus">Status</span>
+        <select id="status"><option value="todo">To do</option><option value="progress">In progress</option><option value="submitted">Submitted</option></select></label>
+      <label><span id="lblNotes">Notes (optional)</span><textarea id="notes" maxlength="500" rows="2"></textarea></label>
+      <div class="form-actions">
+        <button id="addBtn" type="submit">Add assignment</button>
+        <button id="cancelBtn" type="button" hidden>Cancel</button>
+      </div>
+    </form>
+
+    <div class="filters">
+      <input id="search" type="search" placeholder="Search title or subject…">
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="all">All statuses</option>
+        <option value="todo">To do</option>
+        <option value="progress">In progress</option>
+        <option value="submitted">Submitted</option>
+      </select>
+      <select id="sortSel" aria-label="Sort">
+        <option value="due">Sort: due date</option>
+        <option value="priority">Sort: priority</option>
+      </select>
+    </div>
+    <div id="list"></div>
+  </section>
+
+  <section class="tab-panel" data-panel="data" hidden>
+    <h2 id="exportTitle">Export / Import</h2>
+    <button id="exportBtn" type="button">Download JSON</button>
+    <textarea id="importBox" rows="6" placeholder="Paste exported JSON here…"></textarea>
+    <button id="importBtn" type="button">Import JSON</button>
+    <p id="importMsg"></p>
+    <button id="clearBtn" type="button" class="danger">Erase all data</button>
+  </section>
+</main>
+
+<footer><p id="footerText"></p></footer>
+<script src="js/logic.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
